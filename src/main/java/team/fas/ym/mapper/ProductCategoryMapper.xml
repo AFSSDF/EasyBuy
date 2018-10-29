@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.fas.ym.dao.ProductCategoryDao">
+	<select id="getproductCategoryCount" resultType="int">
+		select count(1)
+		as count
+		from easybuy_product_category;
+	</select>
+	<select id="getChildCount" resultType="int">
+		select count(1)
+		as count
+		from easybuy_product_category
+		where parentId=#{parentId};
+	</select>
+	<select id="cbProductCategory" resultMap="productCategory">
+		select *
+		from
+		easybuy_product_category
+		where name like CONCAT('%',#{name},'%') limit 5;
+	</select>
+	<delete id="deleteProductCategory">
+		delete from easybuy_product_category where id =
+		#{id};
+	</delete>
+	<select id="getProductCategorysListToPage"
+		resultMap="productCategory">
+		select * from
+		easybuy_product_category
+		order by type limit
+		#{arg1},#{arg2};
+	</select>
+	<select id="getProductCategorysListByType"
+		resultMap="productCategory">
+		select *
+		from
+		easybuy_product_category where type=#{type};
+	</select>
+	<select id="getProductCategorysListByParentId"
+		resultMap="productCategory">
+		select *
+		from
+		easybuy_product_category where
+		parentId=#{parentId};
+	</select>
+	<select id="getProductCategoryById" resultMap="productCategory">
+		select *
+		from
+		easybuy_product_category where
+		id=#{id};
+	</select>
+	<insert id="insertProductCategory"
+		parameterType="team.fas.ym.entity.ProductCategory">
+		insert into easybuy_product_category
+		values(#{id},#{name},#{parentId},#{type},#{iconClass});
+	</insert>
+	<resultMap type="team.fas.ym.entity.ProductCategory"
+		id="productCategory">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="parentId" column="parentId" />
+		<result property="type" column="type" />
+		<result property="iconClass" column="iconClass" />
+	</resultMap>
+</mapper>

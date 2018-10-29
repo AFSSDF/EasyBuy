@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.fas.ym.dao.OrderDao">
+	<select id="getOrderCount" resultType="int">
+		select count(1) as Count
+		from easybuy_order;
+	</select>
+	<select id="getOrdersList" resultMap="order">
+		select * from
+		easybuy_order;
+	</select>
+	<select id="getOrderById" resultMap="order">
+		select * from easybuy_order
+		where id=#{id};
+	</select>
+	<select id="getOrdersListToPage" resultMap="order">
+		select * from
+		easybuy_order
+		limit #{arg1},#{arg2};
+	</select>
+	<resultMap type="team.fas.ym.entity.Order" id="order">
+		<id property="id" column="id" />
+		<result property="userId" column="userId" />
+		<result property="loginName" column="loginName" />
+		<result property="userAddress" column="userAddress" />
+		<result property="createTime" column="createTime" />
+		<result property="cost" column="cost" />
+		<result property="serialNumber" column="serialNumber" />
+	</resultMap>
+</mapper>

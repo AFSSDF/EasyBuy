@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+.mem_footer {
+	float: right !important;
+	margin-right: 3% !important;
+}
+
+.mem_footer>a {
+	margin: 1px !important;
+}
+
+.mem_footer>span {
+	margin: 0 0.5em;
+	position: relative;
+	top: 0.5em;
+}
+
+tbody tr td {
+	vertical-align: middle !important;
+}
+
+#section {
+	margin: 0 auto;
+	width: 65% !important;
+}
+
+input {
+	display: inline-block !important;
+}
+
+.form-control {
+	width: auto !important;
+}
+
+.form-group>.form-control {
+	width: 85% !important;
+}
+
+.select-content {
+	border: 1px solid #ccc;
+	border-top: none;
+	position: absolute;
+	z-index: 999;
+	background: #fff;
+	text-indent: 1em;
+	display: none;
+}
+
+.select-content>li {
+	padding: 3px 0;
+}
+
+.select-content>li:hover {
+	cursor: pointer;
+	background: #ccc;
+}

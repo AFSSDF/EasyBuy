@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.fas.ym.dao.NewsDao">
+
+	<select id="getNewsCount" resultType="int">
+		select count(1) as count
+		from easybuy_news;
+	</select>
+	<select id="getNewsList" resultMap="news">
+		select *
+		from easybuy_news;
+	</select>
+	<select id="getNewsListToPage" resultMap="news">
+		select *
+		from
+		easybuy_news limit #{arg1},#{arg2};
+	</select>
+	<select id="getNewsById" resultMap="news">
+		select *
+		from easybuy_news
+		where id=#{id};
+	</select>
+	<delete id="deleteNewsById">
+		delete from easybuy_news where id = #{id};
+	</delete>
+	<insert id="insertNews" parameterType="team.fas.ym.entity.News">
+		insert into easybuy_news
+		values(#{id},#{title},#{content},#{createTime});
+	</insert>
+	<update id="updateNews" parameterType="team.fas.ym.entity.News">
+		update easybuy_news
+		<set>
+			<if test="title != null">title=#{title},</if>
+			<if test="content != null">content=#{content},</if>
+			<if test="createTime != null">createTime=#{createTime}</if>
+		</set>
+		where id=#{id};
+	</update>
+	<resultMap type="team.fas.ym.entity.News" id="news">
+		<id property="id" column="id" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="createTime" column="createTime" />
+	</resultMap>
+</mapper>

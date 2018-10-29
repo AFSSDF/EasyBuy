@@ -1,0 +1,13 @@
+@charset "UTF-8";
+#editForm {
+	width: 100%;
+}
+.form-group {
+	width: 40%;
+	margin: 2% 4% !important;
+	display: inline-block;  
+}
+.sub-group{
+	display: block; 
+	margin-left: 50% !important;
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.fas.ym.dao.UserAddressDao">
+
+	<select id="getAllUserAddress" resultMap="userAddress">
+		select a.*,u.loginName from easybuy_user u, easybuy_user_address a where u.id=a.userId;
+	</select>
+	
+	<insert id="insertUserAddress" parameterType="team.fas.ym.entity.UserAddress">
+		insert into easybuy_user_address
+		values(0,#{user.id},#{address},now(),0,null,null);
+	</insert>
+	
+
+	<resultMap type="team.fas.ym.entity.UserAddress"
+		id="userAddress">
+		<id property="id" column="id"/>
+		<result column="address" property="address" />
+		<result column="createTime" property="createTime" />
+		<result column="isDefault" property="isDefault" />
+		<result column="remark" property="remark" />
+		<result column="jutidress" property="jutidress" />
+		<collection property="user"
+			ofType="team.fas.ym.entity.User">
+			<result property="id" column="id" />
+			<result property="loginName" column="loginName" />
+		</collection>
+	</resultMap>
+</mapper>
